@@ -1,6 +1,7 @@
 # =========================
 # IMPORTS
 # =========================
+import os
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from telegram import (
@@ -20,7 +21,8 @@ from datetime import datetime, time
 # =========================
 # BOT TOKEN
 # =========================
-BOT_TOKEN = "8592699078:AAFuRwRXee8LxvVQjEG2Vai69gWYe2IJn7I"
+BOT_TOKEN = os.environ.get("BOT_TOKEN")
+
 
 # =========================
 # GOOGLE SHEETS SETUP
@@ -234,3 +236,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
