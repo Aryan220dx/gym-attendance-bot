@@ -2,6 +2,7 @@
 # IMPORTS
 # =========================
 import os
+import json
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from telegram import (
@@ -32,10 +33,13 @@ scope = [
     "https://www.googleapis.com/auth/drive",
 ]
 
-creds = ServiceAccountCredentials.from_json_keyfile_name(
-    "creds.json", scope
+google_creds = json.loads(os.environ["GOOGLE_CREDS_JSON"])
+
+creds = ServiceAccountCredentials.from_json_keyfile_dict(
+    google_creds, scope
 )
 client = gspread.authorize(creds)
+
 
 sheet = client.open_by_key(
     "1Z_Sbc9xI4H5uLQljIJ-P5NSpsAsxkgyxPAjzPCbigW8"
@@ -236,4 +240,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
